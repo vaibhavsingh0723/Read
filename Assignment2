@@ -1,0 +1,35 @@
+
+public class TopThreeLargest {
+
+    public static int[] findTopThreeLargest(int[] arr) {
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+        int thirdLargest = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+            if (num > largest) {
+                thirdLargest = secondLargest;
+                secondLargest = largest;
+                largest = num;
+            } else if (num > secondLargest && num < largest) {
+                thirdLargest = secondLargest;
+                secondLargest = num;
+            } else if (num > thirdLargest && num < secondLargest) {
+                thirdLargest = num;
+            }
+        }
+
+        return new int[]{largest, secondLargest, thirdLargest};
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = {14, 5, 20, 12, 3, 8, 10, 16, 2, 5, 11, 19, 21};
+        int[] topThree = findTopThreeLargest(arr);
+        
+        System.out.println("Top 3 largest elements:");
+        for (int num : topThree) {
+            System.out.println(num);
+        }
+    }
+
+}
